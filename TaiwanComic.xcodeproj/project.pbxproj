@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC0B36DF256D0A0600E0BF62 /* UIColor+ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B36DE256D0A0600E0BF62 /* UIColor+ColorSet.swift */; };
 		FC431CD5256CF4360072E69A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC431CD4256CF4360072E69A /* AppDelegate.swift */; };
 		FC431CD7256CF4360072E69A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC431CD6256CF4360072E69A /* SceneDelegate.swift */; };
-		FC431CD9256CF4360072E69A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC431CD8256CF4360072E69A /* ContentView.swift */; };
+		FC431CD9256CF4360072E69A /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC431CD8256CF4360072E69A /* MainVC.swift */; };
 		FC431CDC256CF4360072E69A /* TaiwanComic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FC431CDA256CF4360072E69A /* TaiwanComic.xcdatamodeld */; };
 		FC431CDE256CF43B0072E69A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC431CDD256CF43B0072E69A /* Assets.xcassets */; };
 		FC431CE1256CF43B0072E69A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC431CE0256CF43B0072E69A /* Preview Assets.xcassets */; };
@@ -17,10 +18,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC0B36DE256D0A0600E0BF62 /* UIColor+ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ColorSet.swift"; sourceTree = "<group>"; };
 		FC431CD1256CF4360072E69A /* TaiwanComic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaiwanComic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC431CD4256CF4360072E69A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC431CD6256CF4360072E69A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FC431CD8256CF4360072E69A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FC431CD8256CF4360072E69A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		FC431CDB256CF4360072E69A /* TaiwanComic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaiwanComic.xcdatamodel; sourceTree = "<group>"; };
 		FC431CDD256CF43B0072E69A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC431CE0256CF43B0072E69A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -39,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC0B36DD256D09C200E0BF62 /* Extension  */ = {
+			isa = PBXGroup;
+			children = (
+				FC0B36DE256D0A0600E0BF62 /* UIColor+ColorSet.swift */,
+			);
+			path = "Extension ";
+			sourceTree = "<group>";
+		};
 		FC431CC8256CF4360072E69A = {
 			isa = PBXGroup;
 			children = (
@@ -60,8 +70,9 @@
 			children = (
 				FC431CD4256CF4360072E69A /* AppDelegate.swift */,
 				FC431CD6256CF4360072E69A /* SceneDelegate.swift */,
-				FC431CD8256CF4360072E69A /* ContentView.swift */,
+				FC431CD8256CF4360072E69A /* MainVC.swift */,
 				FC431CDD256CF43B0072E69A /* Assets.xcassets */,
+				FC0B36DD256D09C200E0BF62 /* Extension  */,
 				FC431CE2256CF43B0072E69A /* LaunchScreen.storyboard */,
 				FC431CE5256CF43B0072E69A /* Info.plist */,
 				FC431CDA256CF4360072E69A /* TaiwanComic.xcdatamodeld */,
@@ -88,6 +99,7 @@
 				FC431CCD256CF4360072E69A /* Sources */,
 				FC431CCE256CF4360072E69A /* Frameworks */,
 				FC431CCF256CF4360072E69A /* Resources */,
+				FC0B36DB256CF52900E0BF62 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -143,6 +155,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		FC0B36DB256CF52900E0BF62 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftformat >/dev/null; then\nswiftformat .\nelse\necho \"warning: SwiftFormat not installed.\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FC431CCD256CF4360072E69A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -150,7 +182,8 @@
 			files = (
 				FC431CD5256CF4360072E69A /* AppDelegate.swift in Sources */,
 				FC431CD7256CF4360072E69A /* SceneDelegate.swift in Sources */,
-				FC431CD9256CF4360072E69A /* ContentView.swift in Sources */,
+				FC431CD9256CF4360072E69A /* MainVC.swift in Sources */,
+				FC0B36DF256D0A0600E0BF62 /* UIColor+ColorSet.swift in Sources */,
 				FC431CDC256CF4360072E69A /* TaiwanComic.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
