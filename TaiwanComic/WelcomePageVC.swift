@@ -15,4 +15,12 @@ class WelcomePageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
+    @objc func tapLoginButton() {
+        print(#function)
+    }
+
+    @objc func tapSignUpButton() {
+        print(#function)
+    }
 }

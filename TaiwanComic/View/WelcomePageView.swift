@@ -9,86 +9,78 @@ import SnapKit
 import UIKit
 
 class WelcomePageView: UIView {
+    let screenHeight = UIScreen.main.bounds.height
+    let screenWidth = UIScreen.main.bounds.width
+    var logoImageView: UIImageView = {
+        var imageView = UIImageView(image: UIImage(named: "logoTcbHeader"))
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = .clear
+        return imageView
+    }()
+
     var buttonFill: UIButton = {
         var button = Button(buttonStyle: .fill)
         button.setTitle("立即登入", for: .normal)
-        button.addTarget(nil, action: #selector(touch), for: .touchUpInside)
-        button.isEnabled = true
+        button.addTarget(nil, action: #selector(WelcomePageVC.tapLoginButton), for: .touchUpInside)
         return button
     }()
 
     var buttonOutline: UIButton = {
         var button = Button(buttonStyle: .outline)
-        button.setTitle("立即登入", for: .normal)
-        button.isEnabled = true
+        button.setTitle("還不是會員？前往註冊", for: .normal)
+        button.addTarget(nil, action: #selector(WelcomePageVC.tapSignUpButton), for: .touchUpInside)
         return button
     }()
 
-    var buttonOutline2: UIButton = {
-        var button = Button(buttonStyle: .outline2)
-        button.setTitle("立即登入", for: .normal)
-        button.isEnabled = true
-        return button
-    }()
-
-    var ghostButton: UIButton = {
-        var button = Button(buttonStyle: .ghost)
-        button.setTitle("立即登入", for: .normal)
-        button.isEnabled = true
-        return button
-    }()
-
-    var imageButton: UIButton = {
-        var button = Imagebutton(buttonStyle: .apple)
-        return button
-    }()
+//    var buttonOutline2: UIButton = {
+//        var button = Button(buttonStyle: .outline2)
+//        button.setTitle("立即登入", for: .normal)
+//        button.isEnabled = true
+//        return button
+//    }()
+//
+//    var ghostButton: UIButton = {
+//        var button = Button(buttonStyle: .ghost)
+//        button.setTitle("立即登入", for: .normal)
+//        button.isEnabled = true
+//        return button
+//    }()
+//
+//    var imageButton: UIButton = {
+//        var button = Imagebutton(buttonStyle: .apple)
+//        return button
+//    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
+        addSubview(logoImageView)
         addSubview(buttonFill)
         addSubview(buttonOutline)
-        addSubview(buttonOutline2)
-        addSubview(ghostButton)
-        addSubview(imageButton)
         setConstraints()
     }
 
     func setConstraints() {
-        buttonFill.snp.makeConstraints { maker in
-            maker.top.equalToSuperview().offset(100)
+        print("Height = ", frame.height)
+        logoImageView.snp.makeConstraints { maker in
+            maker.top.equalTo(snp.topMargin).offset(screenHeight * 0.31)
             maker.centerX.equalToSuperview()
-            maker.width.equalTo(200)
-            maker.height.equalTo(50)
+//            maker.height.equalTo(screenHeight * 0.12)
+            maker.width.equalTo(screenWidth * 0.53)
+            maker.height.equalTo(logoImageView.snp.width).multipliedBy(0.42)
+        }
+        buttonFill.snp.makeConstraints { maker in
+            maker.top.equalTo(logoImageView.snp.bottom).offset(screenHeight * 0.31)
+            maker.centerX.equalToSuperview()
+            maker.width.equalToSuperview().multipliedBy(0.9)
+            maker.height.equalTo(buttonFill.snp.width).multipliedBy(0.104)
         }
         buttonOutline.snp.makeConstraints { maker in
-            maker.top.equalTo(buttonFill.snp.bottom).offset(100)
+            maker.top.equalTo(buttonFill.snp.bottom).offset(36)
             maker.centerX.equalToSuperview()
-            maker.width.equalTo(200)
-            maker.height.equalTo(50)
+            maker.width.equalToSuperview().multipliedBy(0.9)
+            maker.height.equalTo(buttonOutline.snp.width).multipliedBy(0.104)
         }
-        buttonOutline2.snp.makeConstraints { maker in
-            maker.top.equalTo(buttonOutline.snp.bottom).offset(100)
-            maker.centerX.equalToSuperview()
-            maker.width.equalTo(200)
-            maker.height.equalTo(50)
-        }
-        ghostButton.snp.makeConstraints { maker in
-            maker.top.equalTo(buttonOutline2.snp.bottom).offset(100)
-            maker.centerX.equalToSuperview()
-            maker.width.equalTo(200)
-            maker.height.equalTo(50)
-        }
-        imageButton.snp.makeConstraints { maker in
-            maker.top.equalTo(ghostButton.snp.bottom).offset(100)
-            maker.centerX.equalToSuperview()
-            maker.width.equalTo(200)
-            maker.height.equalTo(50)
-        }
-    }
-
-    @objc func touch() {
-        print(#function)
     }
 
     @available(*, unavailable)
