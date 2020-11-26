@@ -25,6 +25,7 @@ class Button: UIButton {
     var isDisableSet: () -> Void = {}
     convenience init(buttonStyle: ButtonStyle) {
         self.init()
+        titleLabel?.adjustsFontSizeToFitWidth = true
         switch buttonStyle {
         case .fill:
             backgroundColor = .mainColor

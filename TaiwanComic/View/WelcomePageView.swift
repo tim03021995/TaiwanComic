@@ -31,28 +31,8 @@ class WelcomePageView: UIView {
         return button
     }()
 
-//    var buttonOutline2: UIButton = {
-//        var button = Button(buttonStyle: .outline2)
-//        button.setTitle("立即登入", for: .normal)
-//        button.isEnabled = true
-//        return button
-//    }()
-//
-//    var ghostButton: UIButton = {
-//        var button = Button(buttonStyle: .ghost)
-//        button.setTitle("立即登入", for: .normal)
-//        button.isEnabled = true
-//        return button
-//    }()
-//
-//    var imageButton: UIButton = {
-//        var button = Imagebutton(buttonStyle: .apple)
-//        return button
-//    }()
-
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
         addSubview(logoImageView)
         addSubview(buttonFill)
         addSubview(buttonOutline)
