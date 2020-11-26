@@ -11,7 +11,7 @@ import UIKit
 class Button: UIButton {
     override var isHighlighted: Bool {
         didSet {
-            isSelectedSet()
+            isHighlightSet()
         }
     }
 
@@ -21,7 +21,7 @@ class Button: UIButton {
         }
     }
 
-    var isSelectedSet: () -> Void = {}
+    var isHighlightSet: () -> Void = {}
     var isDisableSet: () -> Void = {}
     convenience init(buttonStyle: ButtonStyle) {
         self.init()
@@ -32,7 +32,7 @@ class Button: UIButton {
             setTitleColor(.white, for: .normal)
             setTitleColor(.white, for: .selected)
             setTitleColor(.subtextColor, for: .disabled)
-            isSelectedSet = {
+            isHighlightSet = {
                 self.backgroundColor = self.isHighlighted ? .mainlightColor : .mainColor
                 self.layer.borderColor = self.isHighlighted ? UIColor.mainColor.cgColor : UIColor.mainColor.cgColor
             }
@@ -47,7 +47,7 @@ class Button: UIButton {
             setTitleColor(.mainColor, for: .normal)
             setTitleColor(.mainColor, for: .highlighted)
             setTitleColor(.subtextColor, for: .disabled)
-            isSelectedSet = {
+            isHighlightSet = {
                 self.backgroundColor = self.isHighlighted ? .mainlightColor : .clear
                 self.layer.borderColor = self.isHighlighted ? UIColor.mainlightColor.cgColor : UIColor.mainColor.cgColor
             }
@@ -62,7 +62,7 @@ class Button: UIButton {
             setTitleColor(.textColor, for: .normal)
             setTitleColor(.textColor, for: .highlighted)
             setTitleColor(.subtextColor, for: .disabled)
-            isSelectedSet = {
+            isHighlightSet = {
                 self.backgroundColor = self.isHighlighted ? .pressColor : .clear
                 self.layer.borderColor = self.isHighlighted ? UIColor.textColor.cgColor : UIColor.textColor.cgColor
             }
@@ -74,7 +74,7 @@ class Button: UIButton {
             backgroundColor = .clear
             setTitleColor(.mainColor, for: .normal)
             setTitleColor(.mainColor, for: .highlighted)
-            isSelectedSet = {
+            isHighlightSet = {
                 self.backgroundColor = self.isHighlighted ? .pressColor : .clear
             }
             isDisableSet = {}

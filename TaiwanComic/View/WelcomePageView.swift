@@ -7,10 +7,9 @@
 
 import SnapKit
 import UIKit
-
+let screenHeight = UIScreen.main.bounds.height
+let screenWidth = UIScreen.main.bounds.width
 class WelcomePageView: UIView {
-    let screenHeight = UIScreen.main.bounds.height
-    let screenWidth = UIScreen.main.bounds.width
     var logoImageView: UIImageView = {
         var imageView = UIImageView(image: UIImage(named: "logoTcbHeader"))
         imageView.contentMode = .scaleAspectFit
@@ -61,7 +60,6 @@ class WelcomePageView: UIView {
     }
 
     func setConstraints() {
-        print("Height = ", frame.height)
         logoImageView.snp.makeConstraints { maker in
             maker.top.equalTo(snp.topMargin).offset(screenHeight * 0.31)
             maker.centerX.equalToSuperview()

@@ -21,7 +21,7 @@ extension UIColor {
     static var sub3Color = #colorLiteral(red: 0.2963595688, green: 0.5946460962, blue: 0.7117678523, alpha: 1)
     /// 分隔色塊
     static var spaceColor = #colorLiteral(red: 0.9567589164, green: 0.9569225907, blue: 0.9567485452, alpha: 1)
-    /// 較大範圍被緊底色，輸入框底色
+    /// 較大範圍背景底色，輸入框底色
     static var backgroundColor = #colorLiteral(red: 0.9724436402, green: 0.972609818, blue: 0.9724331498, alpha: 1)
     /// 標題 按鈕
     static var titleColor = #colorLiteral(red: 0.1333139837, green: 0.1333444417, blue: 0.1333120763, alpha: 1)

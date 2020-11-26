@@ -19,6 +19,9 @@
 		FC431CDE256CF43B0072E69A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC431CDD256CF43B0072E69A /* Assets.xcassets */; };
 		FC431CE1256CF43B0072E69A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC431CE0256CF43B0072E69A /* Preview Assets.xcassets */; };
 		FC431CE4256CF43B0072E69A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC431CE2256CF43B0072E69A /* LaunchScreen.storyboard */; };
+		FCEEEC64256E3BB3007FFA7C /* InputBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEEEC63256E3BB3007FFA7C /* InputBox.swift */; };
+		FCEEEC67256E3DA7007FFA7C /* MidifyPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEEEC66256E3DA7007FFA7C /* MidifyPasswordVC.swift */; };
+		FCEEEC6A256E3DBF007FFA7C /* MidifyPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEEEC69256E3DBF007FFA7C /* MidifyPasswordView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		FC431CE0256CF43B0072E69A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FC431CE3256CF43B0072E69A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC431CE5256CF43B0072E69A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FCEEEC63256E3BB3007FFA7C /* InputBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBox.swift; sourceTree = "<group>"; };
+		FCEEEC66256E3DA7007FFA7C /* MidifyPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidifyPasswordVC.swift; sourceTree = "<group>"; };
+		FCEEEC69256E3DBF007FFA7C /* MidifyPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidifyPasswordView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +67,8 @@
 			isa = PBXGroup;
 			children = (
 				FC0B36E4256D19E300E0BF62 /* Button.swift */,
+				FCEEEC69256E3DBF007FFA7C /* MidifyPasswordView.swift */,
+				FCEEEC63256E3BB3007FFA7C /* InputBox.swift */,
 				FC0B36EB256DF9F200E0BF62 /* WelcomePageView.swift */,
 			);
 			path = View;
@@ -88,6 +96,7 @@
 				FC431CD4256CF4360072E69A /* AppDelegate.swift */,
 				FC431CD6256CF4360072E69A /* SceneDelegate.swift */,
 				FC431CD8256CF4360072E69A /* WelcomePageVC.swift */,
+				FCEEEC66256E3DA7007FFA7C /* MidifyPasswordVC.swift */,
 				FC431CDD256CF43B0072E69A /* Assets.xcassets */,
 				FC0B36E3256D189E00E0BF62 /* View */,
 				FC0B36DD256D09C200E0BF62 /* Extension  */,
@@ -207,7 +216,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC431CD5256CF4360072E69A /* AppDelegate.swift in Sources */,
+				FCEEEC6A256E3DBF007FFA7C /* MidifyPasswordView.swift in Sources */,
 				FC0B36E5256D19E300E0BF62 /* Button.swift in Sources */,
+				FCEEEC67256E3DA7007FFA7C /* MidifyPasswordVC.swift in Sources */,
+				FCEEEC64256E3BB3007FFA7C /* InputBox.swift in Sources */,
 				FC431CD7256CF4360072E69A /* SceneDelegate.swift in Sources */,
 				FC431CD9256CF4360072E69A /* WelcomePageVC.swift in Sources */,
 				FC0B36DF256D0A0600E0BF62 /* UIColor+ColorSet.swift in Sources */,
