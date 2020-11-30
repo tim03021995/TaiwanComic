@@ -18,7 +18,6 @@ class CheckBox: UIView {
 
     var label: UILabel = {
         var label = UILabel()
-        label.text = "記住我"
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 14)
         return label
@@ -37,7 +36,7 @@ class CheckBox: UIView {
         label.snp.makeConstraints { maker in
             maker.leading.equalTo(button.snp.trailing).offset(8)
             maker.centerY.equalTo(button)
-            maker.width.equalTo(62)
+            maker.width.equalTo(200)
             maker.height.equalTo(20)
         }
     }

@@ -18,9 +18,15 @@ class WelcomePageVC: UIViewController {
 
     @objc func tapLoginButton() {
         print(#function)
+        let vc = LoginPageVC()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
 
     @objc func tapSignUpButton() {
         print(#function)
+        let vc = SignupVC()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
 }

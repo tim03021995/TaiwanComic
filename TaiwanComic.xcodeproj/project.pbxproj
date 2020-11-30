@@ -12,6 +12,8 @@
 		FC0B36E9256DECCA00E0BF62 /* DynamicColor in Frameworks */ = {isa = PBXBuildFile; productRef = FC0B36E8256DECCA00E0BF62 /* DynamicColor */; };
 		FC0B36EC256DF9F200E0BF62 /* WelcomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B36EB256DF9F200E0BF62 /* WelcomePageView.swift */; };
 		FC0B36F0256DFA6400E0BF62 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FC0B36EF256DFA6400E0BF62 /* SnapKit */; };
+		FC2E5B252574D3F300C65355 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2E5B242574D3F300C65355 /* SignupVC.swift */; };
+		FC2E5B282574D4CC00C65355 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2E5B272574D4CC00C65355 /* SignupView.swift */; };
 		FC431CD5256CF4360072E69A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC431CD4256CF4360072E69A /* AppDelegate.swift */; };
 		FC431CD7256CF4360072E69A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC431CD6256CF4360072E69A /* SceneDelegate.swift */; };
 		FC431CD9256CF4360072E69A /* WelcomePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC431CD8256CF4360072E69A /* WelcomePageVC.swift */; };
@@ -32,6 +34,8 @@
 		FC0B36DE256D0A0600E0BF62 /* UIColor+ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ColorSet.swift"; sourceTree = "<group>"; };
 		FC0B36E4256D19E300E0BF62 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		FC0B36EB256DF9F200E0BF62 /* WelcomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageView.swift; sourceTree = "<group>"; };
+		FC2E5B242574D3F300C65355 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
+		FC2E5B272574D4CC00C65355 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		FC431CD1256CF4360072E69A /* TaiwanComic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaiwanComic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC431CD4256CF4360072E69A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC431CD6256CF4360072E69A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +81,7 @@
 				FC43D3DD256FA71B000BC424 /* LoginPageView.swift */,
 				FCEEEC69256E3DBF007FFA7C /* MidifyPasswordView.swift */,
 				FC0B36EB256DF9F200E0BF62 /* WelcomePageView.swift */,
+				FC2E5B272574D4CC00C65355 /* SignupView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 				FC431CD8256CF4360072E69A /* WelcomePageVC.swift */,
 				FCEEEC66256E3DA7007FFA7C /* MidifyPasswordVC.swift */,
 				FC43D3DA256FA6F6000BC424 /* LoginPageVC.swift */,
+				FC2E5B242574D3F300C65355 /* SignupVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -249,11 +255,13 @@
 				FC43D3DB256FA6F6000BC424 /* LoginPageVC.swift in Sources */,
 				FCDA57F6256FB88F0011AE4E /* checkBox.swift in Sources */,
 				FC0B36E5256D19E300E0BF62 /* Button.swift in Sources */,
+				FC2E5B252574D3F300C65355 /* SignupVC.swift in Sources */,
 				FCEEEC67256E3DA7007FFA7C /* MidifyPasswordVC.swift in Sources */,
 				FCEEEC64256E3BB3007FFA7C /* InputBox.swift in Sources */,
 				FC431CD7256CF4360072E69A /* SceneDelegate.swift in Sources */,
 				FC431CD9256CF4360072E69A /* WelcomePageVC.swift in Sources */,
 				FC0B36DF256D0A0600E0BF62 /* UIColor+ColorSet.swift in Sources */,
+				FC2E5B282574D4CC00C65355 /* SignupView.swift in Sources */,
 				FC0B36EC256DF9F200E0BF62 /* WelcomePageView.swift in Sources */,
 				FC431CDC256CF4360072E69A /* TaiwanComic.xcdatamodeld in Sources */,
 				FC43D3DE256FA71B000BC424 /* LoginPageView.swift in Sources */,

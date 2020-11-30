@@ -31,8 +31,11 @@ class LoginPageVC: UIViewController {
         print(#function)
     }
 
-    @objc func tapSingUpBtn() {
+    @objc func tapSignupBtn() {
         print(#function)
+        let vc = SignupVC()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
 
     @objc func tapCheckBox() {
