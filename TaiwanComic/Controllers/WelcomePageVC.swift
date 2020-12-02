@@ -10,20 +10,23 @@ class WelcomePageVC: UIViewController {
     let welcomePageView = WelcomePageView()
     override func loadView() {
         view = welcomePageView
+        welcomePageView.delegate = self
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+}
 
-    @objc func tapLoginButton() {
+extension WelcomePageVC: WelcomePageViewDelegate {
+    func tapLoginButton() {
         print(#function)
         let vc = LoginPageVC()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
 
-    @objc func tapSignUpButton() {
+    func tapSignUpButton() {
         print(#function)
         let vc = SignupVC()
         vc.modalPresentationStyle = .fullScreen

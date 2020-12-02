@@ -44,6 +44,22 @@ class InputBox: UIView {
         return separator
     }()
 
+    convenience init(text: String) {
+        self.init()
+        label.text = text
+        textField.placeholder = text
+    }
+
+    convenience init(title: String? = nil, placeholder: String? = nil) {
+        self.init()
+        if let text = title {
+            label.text = text
+        }
+        if let placeholder = placeholder {
+            textField.placeholder = placeholder
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setConstraints()

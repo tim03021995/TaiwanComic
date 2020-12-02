@@ -11,57 +11,36 @@ class SignupVC: UIViewController {
     var signupView = SignupView()
     override func loadView() {
         view = signupView
+        signupView.delegate = self
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
+}
 
-    @objc func tapFacebookBtn() {
-        print(#function)
-    }
-
-    @objc func tapGoogleBtn() {
-        print(#function)
-    }
-
-    @objc func tapAppleBtn() {
-        print(#function)
-    }
-
-    @objc func tapLoginBtn() {
+extension SignupVC: SignupViewDelegate {
+    func tapLoginButton() {
         print(#function)
         let vc = LoginPageVC()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
 
-    @objc func tapCheckBox() {
-        print(#function)
-        signupView.checkBox.button.isSelected = !signupView.checkBox.button.isSelected
-    }
-
-    @objc func tapforgetPasswordBtn() {
+    func send() {
         print(#function)
     }
 
-    @objc func tapPasswordEyeBtn() {
-        signupView.passWordInputBox.textField.isSecureTextEntry = !signupView.passWordInputBox.textField.isSecureTextEntry
-        signupView.passWordInputBox.textField.eyesButton.isSelected = !signupView.passWordInputBox.textField.eyesButton.isSelected
-    }
-
-    @objc func tapCheckPasswordEyeBtn() {
-        signupView.passWordInputBox.textField.isSecureTextEntry = !signupView.passWordInputBox.textField.isSecureTextEntry
-        signupView.passWordInputBox.textField.eyesButton.isSelected = !signupView.passWordInputBox.textField.eyesButton.isSelected
-    }
-
-    @objc func send() {
+    func tapCheckBox() {
         print(#function)
     }
 
-    @objc func tapSignupBtn() {
+    func tapSignupBtn() {
+        print(#function)
+    }
+
+    func tapSocialloginBtn(type _: SocialLoginType) {
         print(#function)
     }
 }

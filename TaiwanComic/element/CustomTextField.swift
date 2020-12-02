@@ -18,12 +18,12 @@ class CustomTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
 
-    var eyesButton: UIButton = {
+    lazy var eyesButton: UIButton = {
         var button = UIButton()
         button.setImage(UIImage(named: "inputboxPasswordShow"), for: .normal)
         button.setImage(UIImage(named: "inputboxPasswordHide"), for: .selected)
         button.isHidden = true
-
+        button.addTarget(self, action: #selector(tapEyesBtn), for: .touchUpInside)
         return button
     }()
 
@@ -82,6 +82,12 @@ class CustomTextField: UITextField {
             }
         }
         return width
+    }
+
+    @objc func tapEyesBtn() {
+        print(#function)
+        isSecureTextEntry = !isSecureTextEntry
+        eyesButton.isSelected = !eyesButton.isSelected
     }
 
     override func editingRect(forBounds bounds: CGRect) -> CGRect {

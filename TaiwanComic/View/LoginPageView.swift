@@ -7,8 +7,16 @@
 
 import SnapKit
 import UIKit
+protocol LoginPageViewDelegate {
+    func tapSignupBtn()
+    func tapSocialloginBtn(type: SocialLoginType)
+    func tapCheckBox()
+    func tapforgetPasswordBtn()
+    func tapLoginButton()
+}
 
 class LoginPageView: UIView {
+    var delegate: LoginPageViewDelegate!
     var titleLabel: UILabel = {
         var label = UILabel()
         label.text = "登入"
@@ -19,36 +27,32 @@ class LoginPageView: UIView {
     }()
 
     var signUpButton: Button = {
-        var button = Button(buttonStyle: .ghost)
-        button.setTitle("註冊", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.addTarget(nil, action: #selector(LoginPageVC.tapSignupBtn), for: .touchUpInside)
+        var button = Button(buttonStyle: .ghost, text: "註冊")
+        button.addTarget(self, action: #selector(tapSignupBtn), for: .touchUpInside)
         return button
     }()
 
     var midifyPasswordButton: Button = {
-        var button = Button(buttonStyle: .ghost)
-        button.setTitle("忘記密碼？", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.addTarget(nil, action: #selector(LoginPageVC.tapforgetPasswordBtn), for: .touchUpInside)
+        var button = Button(buttonStyle: .ghost, text: "忘記密碼？")
+        button.addTarget(self, action: #selector(tapforgetPasswordBtn), for: .touchUpInside)
         return button
     }()
 
-    var facebookButton: Imagebutton {
-        let button = Imagebutton(buttonStyle: .faceBook)
-        button.addTarget(nil, action: #selector(LoginPageVC.tapFacebookBtn), for: .touchUpInside)
+    var facebookButton: socialLoginButton {
+        let button = socialLoginButton(buttonType: .faceBook)
+        button.addTarget(self, action: #selector(tapSocialloginBtn), for: .touchUpInside)
         return button
     }
 
-    var googleButton: Imagebutton {
-        let button = Imagebutton(buttonStyle: .google)
-        button.addTarget(nil, action: #selector(LoginPageVC.tapGoogleBtn), for: .touchUpInside)
+    var googleButton: socialLoginButton {
+        let button = socialLoginButton(buttonType: .google)
+        button.addTarget(self, action: #selector(tapSocialloginBtn), for: .touchUpInside)
         return button
     }
 
-    var appleButton: Imagebutton {
-        let button = Imagebutton(buttonStyle: .apple)
-        button.addTarget(nil, action: #selector(LoginPageVC.tapAppleBtn), for: .touchUpInside)
+    var appleButton: socialLoginButton {
+        let button = socialLoginButton(buttonType: .apple)
+        button.addTarget(self, action: #selector(tapSocialloginBtn), for: .touchUpInside)
         return button
     }
 
@@ -63,22 +67,21 @@ class LoginPageView: UIView {
     }()
 
     var accountInputBox: InputBox = {
-        var inputBox = InputBox()
-        inputBox.label.text = "帳號"
-        inputBox.textField.placeholder = "帳號"
-        inputBox.textField.isSecureTextEntry = true
-
+        var inputBox = InputBox(text: "帳號")
         return inputBox
     }()
 
     var passWordInputBox: InputBox = {
-        var inputBox = InputBox()
-        inputBox.label.text = "密碼"
-        inputBox.textField.placeholder = "密碼"
+        var inputBox = InputBox(text: "密碼")
         inputBox.textField.eyesButton.isHidden = false
         inputBox.textField.isSecureTextEntry = true
-        inputBox.textField.eyesButton.addTarget(nil, action: #selector(LoginPageVC.tapPasswordEyeBtn), for: .touchUpInside)
         return inputBox
+    }()
+
+    lazy var inputBoxStack: UIStackView = {
+        var stack = UIStackView(arrangedSubviews: [accountInputBox, passWordInputBox])
+        stack.VStack()
+        return stack
     }()
 
     var separatorView: UIView = {
@@ -109,33 +112,42 @@ class LoginPageView: UIView {
     var checkBox: CheckBox = {
         var checkBox = CheckBox()
         checkBox.label.text = "記住我"
-        checkBox.button.addTarget(self, action: #selector(LoginPageVC.tapCheckBox), for: .touchUpInside)
+        checkBox.button.addTarget(self, action: #selector(tapCheckBox), for: .touchUpInside)
         checkBox.button.isSelected = true
         return checkBox
     }()
 
     var loginButton: UIButton = {
-        var button = Button(buttonStyle: .fill)
-        button.setTitle("登入", for: .normal)
-        button.addTarget(nil, action: #selector(LoginPageVC.taploginBtn), for: .touchUpInside)
+        var button = Button(buttonStyle: .fill, text: "登入")
+        button.addTarget(self, action: #selector(taploginBtn), for: .touchUpInside)
         return button
     }()
 
+    // MARK: - init()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(titleLabel)
-        titleLabel.addSubview(signUpButton)
-        addSubview(iconStackView)
-        addSubview(separatorView)
-        addSubview(accountInputBox)
-        addSubview(passWordInputBox)
-        addSubview(checkBox)
-        addSubview(loginButton)
-        addSubview(midifyPasswordButton)
+        setSubview()
         setConstraints()
     }
 
-    func setConstraints() {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - setSubview()
+
+    private func setSubview() {
+        let views = [titleLabel, iconStackView, separatorView, inputBoxStack, checkBox, loginButton, midifyPasswordButton]
+        addSubviews(views)
+        titleLabel.addSubview(signUpButton)
+        backgroundColor = .white
+    }
+
+    // MARK: - setConstraints()
+
+    private func setConstraints() {
         let edgePaddingX = 16
         let edgePaddingY = 24
         titleLabel.snp.makeConstraints { maker in
@@ -161,13 +173,8 @@ class LoginPageView: UIView {
             maker.trailing.equalTo(-edgePaddingX)
             maker.height.equalTo(20)
         }
-        accountInputBox.snp.makeConstraints { maker in
+        inputBoxStack.snp.makeConstraints { maker in
             maker.top.equalTo(separatorView.snp.bottom).offset(edgePaddingY)
-            maker.leading.equalTo(edgePaddingX)
-            maker.trailing.equalTo(-edgePaddingX)
-        }
-        passWordInputBox.snp.makeConstraints { maker in
-            maker.top.equalTo(accountInputBox.snp.bottom).offset(edgePaddingY)
             maker.leading.equalTo(edgePaddingX)
             maker.trailing.equalTo(-edgePaddingX)
         }
@@ -186,8 +193,31 @@ class LoginPageView: UIView {
         }
     }
 
-    @available(*, unavailable)
-    required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func touchesBegan(_: Set<UITouch>, with _: UIEvent?) {
+        endEditing(true)
+    }
+
+    @objc func tapSignupBtn() {
+        delegate.tapSignupBtn()
+    }
+
+    @objc func tapSocialloginBtn(_ sender: socialLoginButton) {
+        delegate.tapSocialloginBtn(type: sender.type!)
+    }
+
+    @objc func tapCheckBox() {
+        print(#function)
+        checkBox.button.isSelected = !checkBox.button.isSelected
+        delegate.tapCheckBox()
+    }
+
+    @objc func tapforgetPasswordBtn() {
+        print(#function)
+        delegate.tapforgetPasswordBtn()
+    }
+
+    @objc func taploginBtn() {
+        print(#function)
+        delegate.tapLoginButton()
     }
 }

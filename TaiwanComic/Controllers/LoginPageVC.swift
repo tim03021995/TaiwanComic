@@ -11,6 +11,7 @@ class LoginPageVC: UIViewController {
     var loginPageView = LoginPageView()
     override func loadView() {
         view = loginPageView
+        loginPageView.delegate = self
     }
 
     override func viewDidLoad() {
@@ -18,41 +19,29 @@ class LoginPageVC: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+}
 
-    @objc func tapFacebookBtn() {
-        print(#function)
-    }
-
-    @objc func tapGoogleBtn() {
-        print(#function)
-    }
-
-    @objc func tapAppleBtn() {
-        print(#function)
-    }
-
-    @objc func tapSignupBtn() {
+extension LoginPageVC: LoginPageViewDelegate {
+    func tapSignupBtn() {
         print(#function)
         let vc = SignupVC()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
 
-    @objc func tapCheckBox() {
-        print(#function)
-        loginPageView.checkBox.button.isSelected = !loginPageView.checkBox.button.isSelected
-    }
-
-    @objc func tapforgetPasswordBtn() {
+    func tapCheckBox() {
         print(#function)
     }
 
-    @objc func tapPasswordEyeBtn() {
-        loginPageView.passWordInputBox.textField.isSecureTextEntry = !loginPageView.passWordInputBox.textField.isSecureTextEntry
-        loginPageView.passWordInputBox.textField.eyesButton.isSelected = !loginPageView.passWordInputBox.textField.eyesButton.isSelected
+    func tapforgetPasswordBtn() {
+        print(#function)
     }
 
-    @objc func taploginBtn() {
+    func tapSocialloginBtn(type _: SocialLoginType) {
+        print(#function)
+    }
+
+    func tapLoginButton() {
         print(#function)
     }
 }

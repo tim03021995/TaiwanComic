@@ -14,6 +14,9 @@
 		FC0B36F0256DFA6400E0BF62 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FC0B36EF256DFA6400E0BF62 /* SnapKit */; };
 		FC2E5B252574D3F300C65355 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2E5B242574D3F300C65355 /* SignupVC.swift */; };
 		FC2E5B282574D4CC00C65355 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2E5B272574D4CC00C65355 /* SignupView.swift */; };
+		FC2E5B2D2575D47C00C65355 /* UIStack+HStack&VStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2E5B2C2575D47C00C65355 /* UIStack+HStack&VStack.swift */; };
+		FC2E5B302575D82800C65355 /* UIView+arrangedSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2E5B2F2575D82800C65355 /* UIView+arrangedSubviews.swift */; };
+		FC2E5B8D2576104F00C65355 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FC2E5B8C2576104F00C65355 /* IQKeyboardManagerSwift */; };
 		FC431CD5256CF4360072E69A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC431CD4256CF4360072E69A /* AppDelegate.swift */; };
 		FC431CD7256CF4360072E69A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC431CD6256CF4360072E69A /* SceneDelegate.swift */; };
 		FC431CD9256CF4360072E69A /* WelcomePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC431CD8256CF4360072E69A /* WelcomePageVC.swift */; };
@@ -36,6 +39,8 @@
 		FC0B36EB256DF9F200E0BF62 /* WelcomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageView.swift; sourceTree = "<group>"; };
 		FC2E5B242574D3F300C65355 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
 		FC2E5B272574D4CC00C65355 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		FC2E5B2C2575D47C00C65355 /* UIStack+HStack&VStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStack+HStack&VStack.swift"; sourceTree = "<group>"; };
+		FC2E5B2F2575D82800C65355 /* UIView+arrangedSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+arrangedSubviews.swift"; sourceTree = "<group>"; };
 		FC431CD1256CF4360072E69A /* TaiwanComic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaiwanComic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC431CD4256CF4360072E69A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC431CD6256CF4360072E69A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +66,7 @@
 			files = (
 				FC0B36E9256DECCA00E0BF62 /* DynamicColor in Frameworks */,
 				FC0B36F0256DFA6400E0BF62 /* SnapKit in Frameworks */,
+				FC2E5B8D2576104F00C65355 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +77,8 @@
 			isa = PBXGroup;
 			children = (
 				FC0B36DE256D0A0600E0BF62 /* UIColor+ColorSet.swift */,
+				FC2E5B2C2575D47C00C65355 /* UIStack+HStack&VStack.swift */,
+				FC2E5B2F2575D82800C65355 /* UIView+arrangedSubviews.swift */,
 			);
 			path = "Extension ";
 			sourceTree = "<group>";
@@ -170,6 +178,7 @@
 			packageProductDependencies = (
 				FC0B36E8256DECCA00E0BF62 /* DynamicColor */,
 				FC0B36EF256DFA6400E0BF62 /* SnapKit */,
+				FC2E5B8C2576104F00C65355 /* IQKeyboardManagerSwift */,
 			);
 			productName = TaiwanComic;
 			productReference = FC431CD1256CF4360072E69A /* TaiwanComic.app */;
@@ -201,6 +210,7 @@
 			packageReferences = (
 				FC0B36E7256DECCA00E0BF62 /* XCRemoteSwiftPackageReference "DynamicColor" */,
 				FC0B36EE256DFA6400E0BF62 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				FC2E5B8B2576104F00C65355 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = FC431CD2256CF4360072E69A /* Products */;
 			projectDirPath = "";
@@ -255,7 +265,9 @@
 				FC43D3DB256FA6F6000BC424 /* LoginPageVC.swift in Sources */,
 				FCDA57F6256FB88F0011AE4E /* checkBox.swift in Sources */,
 				FC0B36E5256D19E300E0BF62 /* Button.swift in Sources */,
+				FC2E5B2D2575D47C00C65355 /* UIStack+HStack&VStack.swift in Sources */,
 				FC2E5B252574D3F300C65355 /* SignupVC.swift in Sources */,
+				FC2E5B302575D82800C65355 /* UIView+arrangedSubviews.swift in Sources */,
 				FCEEEC67256E3DA7007FFA7C /* MidifyPasswordVC.swift in Sources */,
 				FCEEEC64256E3BB3007FFA7C /* InputBox.swift in Sources */,
 				FC431CD7256CF4360072E69A /* SceneDelegate.swift in Sources */,
@@ -480,6 +492,14 @@
 				minimumVersion = 5.0.1;
 			};
 		};
+		FC2E5B8B2576104F00C65355 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.6;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -492,6 +512,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FC0B36EE256DFA6400E0BF62 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		FC2E5B8C2576104F00C65355 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC2E5B8B2576104F00C65355 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 

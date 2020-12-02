@@ -8,6 +8,8 @@
 import SwiftUI
 import UIKit
 
+let edgePaddingX: CGFloat = 16
+let edgePaddingY: CGFloat = 24
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 

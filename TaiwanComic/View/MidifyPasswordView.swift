@@ -7,43 +7,40 @@
 
 import SnapKit
 import UIKit
+protocol MidifyPasswordViewDelegate {
+    func confirmBtn()
+}
 
 class MidifyPasswordView: UIView {
+    var delegate: MidifyPasswordViewDelegate!
     var someBool = false
     var heightConstraint: Constraint?
 
-    var newPassword: InputBox = {
-        var inputBox = InputBox()
-        inputBox.label.text = "新密碼"
-        inputBox.textField.placeholder = "新密碼"
+    lazy var newPassword: InputBox = {
+        var inputBox = InputBox(text: "新密碼")
         inputBox.textField.eyesButton.isHidden = false
         inputBox.textField.isSecureTextEntry = true
-        inputBox.textField.eyesButton.addTarget(self, action: #selector(MidifyPasswordVC.tapPasswordEyeBtn), for: .touchUpInside)
         return inputBox
     }()
 
-    var confirmPassword: InputBox = {
-        var inputBox = InputBox()
-        inputBox.label.text = "確認密碼"
-        inputBox.textField.placeholder = "再次輸入新密碼"
+    lazy var confirmPassword: InputBox = {
+        var inputBox = InputBox(title: "確認密碼", placeholder: "再次輸入新密碼")
         inputBox.textField.eyesButton.isHidden = false
         inputBox.textField.isSecureTextEntry = true
-        inputBox.textField.eyesButton.addTarget(self, action: #selector(MidifyPasswordVC.tapConfirmPasswordBtn), for: .touchUpInside)
         return inputBox
     }()
 
-    var buttonFill: UIButton = {
-        var button = Button(buttonStyle: .fill)
-        button.setTitle("確認修改", for: .normal)
-        button.addTarget(nil, action: #selector(WelcomePageVC.tapLoginButton), for: .touchUpInside)
+    lazy var buttonFill: UIButton = {
+        var button = Button(buttonStyle: .fill, text: "確認修改")
+        button.addTarget(self, action: #selector(confirmBtn), for: .touchUpInside)
         return button
     }()
 
+    // MARK: - init()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(newPassword)
-        addSubview(confirmPassword)
-        addSubview(buttonFill)
+        setSubview()
         setConstraints()
     }
 
@@ -51,6 +48,16 @@ class MidifyPasswordView: UIView {
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - setSubview()
+
+    private func setSubview() {
+        addSubview(newPassword)
+        addSubview(confirmPassword)
+        addSubview(buttonFill)
+    }
+
+    // MARK: - setConstraints()
 
     func setConstraints() {
         newPassword.snp.makeConstraints { maker in
@@ -70,16 +77,7 @@ class MidifyPasswordView: UIView {
         }
     }
 
-//    override func touchesBegan(_: Set<UITouch>, with _: UIEvent?) {
-//        someBool.toggle()
-//        heightConstraint?.deactivate()
-//        inputBox.label.snp.makeConstraints { maker in
-//            let height = someBool ? 44 : 200
-//            self.heightConstraint = maker.height.equalTo(height).constraint
-//        }
-//        inputBox.label.backgroundColor = .gray
-//        UIView.animate(withDuration: 1) {
-//            self.inputBox.layoutIfNeeded()
-//        }
-//    }
+    @objc func confirmBtn() {
+        delegate.confirmBtn()
+    }
 }

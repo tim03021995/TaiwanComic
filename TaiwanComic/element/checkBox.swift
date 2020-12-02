@@ -9,6 +9,12 @@ import SnapKit
 import UIKit
 
 class CheckBox: UIView {
+    var isChecked: Bool = false {
+        didSet {
+            button.isSelected = isChecked
+        }
+    }
+
     var button: UIButton = {
         var button = UIButton()
         button.setImage(UIImage(named: "checkbox"), for: .normal)
@@ -26,19 +32,36 @@ class CheckBox: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         isUserInteractionEnabled = true
-        addSubview(label)
-        addSubview(button)
-        button.snp.makeConstraints { maker in
-            maker.leading.equalToSuperview()
-            maker.centerY.equalToSuperview()
-            maker.height.width.equalTo(18)
+//        addSubview(label)
+//        addSubview(button)
+
+        let stackView = UIStackView(arrangedSubviews: [button, label])
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        stackView.alignment = .leading
+        stackView.distribution = .equalSpacing
+        addSubview(stackView)
+        stackView.snp.makeConstraints { maker in
+            maker.top.leading.bottom.equalToSuperview()
         }
-        label.snp.makeConstraints { maker in
-            maker.leading.equalTo(button.snp.trailing).offset(8)
-            maker.centerY.equalTo(button)
-            maker.width.equalTo(200)
-            maker.height.equalTo(20)
-        }
+        /* Alvin
+                button.snp.makeConstraints { maker in
+                    maker.leading.equalToSuperview()
+                    maker.centerY.equalToSuperview()
+                    maker.height.width.equalTo(18)
+                }
+                label.snp.makeConstraints { maker in
+                    maker.leading.equalTo(button.snp.trailing).offset(8)
+                    maker.centerY.equalTo(button)
+                    maker.width.equalTo(200)
+                    maker.height.equalTo(20)
+                }
+         */
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        print(#function)
     }
 
     @available(*, unavailable)

@@ -8,47 +8,56 @@
 import SnapKit
 import UIKit
 
-class SignupView: UIView {
-    var titleLabel: UILabel = {
+protocol SignupViewDelegate {
+    func tapLoginButton()
+    func tapSocialloginBtn(type: SocialLoginType)
+    func send()
+    func tapCheckBox()
+    func tapSignupBtn()
+}
+
+class SignupView: UIView, UIScrollViewDelegate {
+    var delegate: SignupViewDelegate!
+    lazy var scrollView: UIScrollView = {
+        var scrollView = UIScrollView()
+        scrollView.isScrollEnabled = true
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.alwaysBounceHorizontal = false
+        scrollView.delegate = self
+        return scrollView
+    }()
+
+    lazy var titleLabel: UILabel = {
         var label = UILabel()
         label.text = "註冊"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 24)
         label.isUserInteractionEnabled = true
+        label.addSubview(loginButton)
         return label
     }()
 
-    var loginButton: Button = {
-        var button = Button(buttonStyle: .ghost)
-        button.setTitle("登入", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.addTarget(nil, action: #selector(SignupVC.tapLoginBtn), for: .touchUpInside)
+    lazy var loginButton: Button = {
+        var button = Button(buttonStyle: .ghost, text: "登入")
+        button.addTarget(self, action: #selector(tapLoginBtn), for: .touchUpInside)
         return button
     }()
 
-    var midifyPasswordButton: Button = {
-        var button = Button(buttonStyle: .ghost)
-        button.setTitle("忘記密碼？", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.addTarget(nil, action: #selector(SignupVC.tapforgetPasswordBtn), for: .touchUpInside)
-        return button
-    }()
-
-    var facebookButton: Imagebutton {
-        let button = Imagebutton(buttonStyle: .faceBook)
-        button.addTarget(nil, action: #selector(SignupVC.tapFacebookBtn), for: .touchUpInside)
+    var facebookButton: socialLoginButton {
+        let button = socialLoginButton(buttonType: .faceBook)
+        button.addTarget(self, action: #selector(tapSocialloginBtn(_:)), for: .touchUpInside)
         return button
     }
 
-    var googleButton: Imagebutton {
-        let button = Imagebutton(buttonStyle: .google)
-        button.addTarget(nil, action: #selector(SignupVC.tapGoogleBtn), for: .touchUpInside)
+    var googleButton: socialLoginButton {
+        let button = socialLoginButton(buttonType: .google)
+        button.addTarget(self, action: #selector(tapSocialloginBtn(_:)), for: .touchUpInside)
         return button
     }
 
-    var appleButton: Imagebutton {
-        let button = Imagebutton(buttonStyle: .apple)
-        button.addTarget(nil, action: #selector(SignupVC.tapAppleBtn), for: .touchUpInside)
+    var appleButton: socialLoginButton {
+        let button = socialLoginButton(buttonType: .apple)
+        button.addTarget(self, action: #selector(tapSocialloginBtn(_:)), for: .touchUpInside)
         return button
     }
 
@@ -59,6 +68,9 @@ class SignupView: UIView {
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
         stackView.isUserInteractionEnabled = true
+        stackView.snp.makeConstraints { maker in
+            maker.height.equalTo(36)
+        }
         return stackView
     }()
 
@@ -72,48 +84,36 @@ class SignupView: UIView {
     }()
 
     var passWordInputBox: InputBox = {
-        var inputBox = InputBox()
-        inputBox.label.text = "密碼"
-        inputBox.textField.placeholder = "密碼"
+        var inputBox = InputBox(text: "密碼")
         inputBox.textField.eyesButton.isHidden = false
         inputBox.textField.isSecureTextEntry = true
-        inputBox.textField.eyesButton.addTarget(nil, action: #selector(SignupVC.tapPasswordEyeBtn), for: .touchUpInside)
         return inputBox
     }()
 
     var checkPassWordInputBox: InputBox = {
-        var inputBox = InputBox()
-        inputBox.label.text = "確認密碼"
-        inputBox.textField.placeholder = "再次輸入密碼"
+        var inputBox = InputBox(title: "確認密碼", placeholder: "再次輸入密碼")
         inputBox.textField.eyesButton.isHidden = false
         inputBox.textField.isSecureTextEntry = true
-        inputBox.textField.eyesButton.addTarget(nil, action: #selector(SignupVC.tapPasswordEyeBtn), for: .touchUpInside)
         return inputBox
     }()
 
     var EmailInputBox: InputBox = {
-        var inputBox = InputBox()
-        inputBox.label.text = "Email"
-        inputBox.textField.placeholder = "Email"
+        var inputBox = InputBox(text: "Email")
         inputBox.textField.isSecureTextEntry = true
 
         return inputBox
     }()
 
     var phoneInputBox: InputBox = {
-        var inputBox = InputBox()
-        inputBox.label.text = "手機"
-        inputBox.textField.placeholder = "手機"
+        var inputBox = InputBox(text: "手機")
         inputBox.textField.isSecureTextEntry = true
 
         return inputBox
     }()
 
-    var sendButton: Button = {
-        var button = Button(buttonStyle: .outline)
-        button.setTitle("發送驗證碼", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.addTarget(nil, action: #selector(SignupVC.send), for: .touchUpInside)
+    lazy var sendButton: Button = {
+        var button = Button(buttonStyle: .outline, text: "發送驗證碼")
+        button.addTarget(self, action: #selector(send), for: .touchUpInside)
         return button
     }()
 
@@ -129,26 +129,24 @@ class SignupView: UIView {
             maker.top.bottom.equalTo(phoneInputBox.textField)
             maker.leading.equalTo(phoneInputBox.snp.trailing).offset(8)
             maker.trailing.equalToSuperview()
+            maker.width.equalTo(142)
         }
         return HStack
     }()
 
     var checkInputBox: InputBox = {
-        var inputBox = InputBox()
-        inputBox.label.text = "簡訊驗證碼"
-        inputBox.textField.placeholder = "簡訊驗證碼"
+        var inputBox = InputBox(text: "簡訊驗證碼")
         inputBox.textField.isSecureTextEntry = true
 
         return inputBox
     }()
 
     lazy var VStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [accountInputBox, passWordInputBox, checkPassWordInputBox, EmailInputBox, HStack, checkInputBox])
-        stackView.axis = .vertical
-        stackView.spacing = 6
-        stackView.distribution = .fillEqually
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, iconStackView, separatorView, accountInputBox, passWordInputBox, checkPassWordInputBox, EmailInputBox, HStack, checkInputBox, checkBox, signupButton])
+        stackView.VStack()
         stackView.alignment = .fill
-        stackView.isUserInteractionEnabled = true
+        stackView.distribution = .equalSpacing
+        stackView.spacing = edgePaddingY
         return stackView
     }()
 
@@ -172,12 +170,12 @@ class SignupView: UIView {
         label.snp.makeConstraints { maker in
             maker.center.equalToSuperview()
             maker.width.equalTo(46)
-            maker.height.equalToSuperview()
+            maker.height.equalTo(20)
         }
         return separatorView
     }()
 
-    var checkBox: CheckBox = {
+    lazy var checkBox: CheckBox = {
         var checkBox = CheckBox()
         let attributedString = NSMutableAttributedString(string: "同意 使用政策 及 條款", attributes: [
             .font: UIFont.systemFont(ofSize: 14),
@@ -191,80 +189,84 @@ class SignupView: UIView {
             .font: UIFont.systemFont(ofSize: 14),
             .foregroundColor: UIColor(white: 34.0 / 255.0, alpha: 1.0),
         ], range: NSRange(location: 8, length: 1))
+
         checkBox.label.attributedText = attributedString
-        checkBox.button.addTarget(self, action: #selector(LoginPageVC.tapCheckBox), for: .touchUpInside)
-        checkBox.button.isSelected = true
+        checkBox.button.addTarget(self, action: #selector(tapCheckBox), for: .touchUpInside)
         return checkBox
     }()
 
-    var signupButton: UIButton = {
-        var button = Button(buttonStyle: .fill)
-        button.setTitle("註冊", for: .normal)
-        button.addTarget(nil, action: #selector(LoginPageVC.taploginBtn), for: .touchUpInside)
+    lazy var signupButton: UIButton = {
+        var button = Button(buttonStyle: .fill, text: "註冊")
+        button.addTarget(self, action: #selector(tapSignupBtn), for: .touchUpInside)
         return button
     }()
 
+    // MARK: - init()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(titleLabel)
-        titleLabel.addSubview(loginButton)
-        addSubview(iconStackView)
-        addSubview(separatorView)
-        addSubview(VStack)
-        addSubview(checkBox)
-        addSubview(midifyPasswordButton)
-        addSubview(signupButton)
+        setSubview()
         setConstraints()
     }
 
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - setSubview()
+
+    func setSubview() {
+        scrollView.addSubview(VStack)
+        addSubview(scrollView)
+        backgroundColor = .white
+    }
+
+    // MARK: - setConstraints()
+
     func setConstraints() {
-        let edgePaddingX = 16
-        let edgePaddingY = 24
-        titleLabel.snp.makeConstraints { maker in
-            maker.top.equalTo(snp.topMargin).offset(edgePaddingY)
-            maker.leading.equalTo(edgePaddingX)
-            maker.trailing.equalTo(-edgePaddingX)
-            maker.height.equalTo(35)
+        scrollView.snp.makeConstraints { maker in
+            maker.edges.equalToSuperview()
         }
         loginButton.snp.makeConstraints { maker in
             maker.trailing.bottom.equalToSuperview()
             maker.height.equalTo(22)
             maker.width.equalTo(32)
         }
-        iconStackView.snp.makeConstraints { maker in
-            maker.top.equalTo(titleLabel.snp.bottom).offset(36)
-            maker.leading.equalTo(edgePaddingX)
-            maker.trailing.equalTo(-edgePaddingX)
-            maker.height.equalTo(36)
-        }
-        separatorView.snp.makeConstraints { maker in
-            maker.top.equalTo(iconStackView.snp.bottom).offset(edgePaddingY)
-            maker.leading.equalTo(edgePaddingX)
-            maker.trailing.equalTo(-edgePaddingX)
-            maker.height.equalTo(20)
-        }
         VStack.snp.makeConstraints { maker in
-            maker.top.equalTo(separatorView.snp.bottom).offset(edgePaddingY)
-            maker.leading.equalTo(edgePaddingX)
-            maker.trailing.equalTo(-edgePaddingX)
+            maker.leading.equalTo(self).offset(edgePaddingX)
+            maker.trailing.equalTo(self).offset(-edgePaddingX)
+            maker.top.equalToSuperview().offset(edgePaddingY * 2)
+            maker.bottom.equalToSuperview().offset(-36)
         }
         checkBox.snp.makeConstraints { maker in
-            maker.top.equalTo(VStack.snp.bottom).offset(edgePaddingY)
-            maker.leading.equalToSuperview().offset(edgePaddingY)
-        }
-        midifyPasswordButton.snp.makeConstraints { maker in
-            maker.top.bottom.equalTo(checkBox)
-            maker.trailing.equalTo(-edgePaddingX)
-        }
-        signupButton.snp.makeConstraints { maker in
-            maker.top.equalTo(checkBox.snp.bottom).offset(60)
-            maker.leading.equalTo(edgePaddingX)
-            maker.trailing.equalTo(-edgePaddingX)
+            maker.leading.equalToSuperview()
+            maker.size.equalTo(CGSize(width: 159, height: 18))
         }
     }
 
-    @available(*, unavailable)
-    required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func scrollViewWillBeginDragging(_: UIScrollView) {
+        endEditing(true)
+    }
+
+    @objc func tapSocialloginBtn(_ sender: socialLoginButton) {
+        delegate.tapSocialloginBtn(type: sender.type!)
+    }
+
+    @objc func tapLoginBtn() {
+        delegate.tapLoginButton()
+    }
+
+    @objc func tapCheckBox() {
+        checkBox.button.isSelected = !checkBox.button.isSelected
+        delegate.tapCheckBox()
+    }
+
+    @objc func send() {
+        delegate.send()
+    }
+
+    @objc func tapSignupBtn() {
+        delegate.tapSignupBtn()
     }
 }

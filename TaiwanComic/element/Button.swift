@@ -8,6 +8,10 @@
 import DynamicColor
 import UIKit
 
+enum SocialLoginType {
+    case faceBook, google, apple
+}
+
 class Button: UIButton {
     override var isHighlighted: Bool {
         didSet {
@@ -23,9 +27,13 @@ class Button: UIButton {
 
     var isHighlightSet: () -> Void = {}
     var isDisableSet: () -> Void = {}
-    convenience init(buttonStyle: ButtonStyle) {
+    convenience init(buttonStyle: ButtonStyle, text: String? = nil) {
         self.init()
         titleLabel?.adjustsFontSizeToFitWidth = true
+        titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        if let text = text {
+            setTitle(text, for: .normal)
+        }
         switch buttonStyle {
         case .fill:
             backgroundColor = .mainColor
@@ -99,7 +107,8 @@ class Button: UIButton {
     }
 }
 
-class Imagebutton: UIButton {
+class socialLoginButton: UIButton {
+    var type: SocialLoginType?
     override var isHighlighted: Bool {
         didSet {
             isSelectedSet()
@@ -107,12 +116,13 @@ class Imagebutton: UIButton {
     }
 
     var isSelectedSet: () -> Void = {}
-    convenience init(buttonStyle: ButtonStyle) {
+    convenience init(buttonType: SocialLoginType) {
         self.init()
+        type = buttonType
         backgroundColor = .clear
         layer.borderWidth = 1
         layer.borderColor = UIColor.subtextColor.cgColor
-        switch buttonStyle {
+        switch buttonType {
         case .faceBook:
             setImage(UIImage(named: "snsColorFb"), for: .normal)
         case .google:
@@ -132,9 +142,5 @@ class Imagebutton: UIButton {
     @available(*, unavailable)
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    enum ButtonStyle {
-        case faceBook, google, apple
     }
 }
